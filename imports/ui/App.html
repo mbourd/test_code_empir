@@ -1,0 +1,29 @@
+<body>
+    {{> mainContainer }}
+</body>
+
+
+<template name="mainContainer">
+    <div class="app">
+        <header>
+            <div class="app-bar">
+                <div class="app-header">
+                    <h1>📝️ Export List</h1>
+                </div>
+            </div>
+        </header>
+
+        <div class="actions-button">
+            <button
+                type="button"
+                id="export-button"
+            >Start new export</button>
+        </div>
+
+        <ul class="exports">
+            {{#each exports}}
+                {{> export}}
+            {{/each}}
+        </ul>
+    </div>
+</template>
