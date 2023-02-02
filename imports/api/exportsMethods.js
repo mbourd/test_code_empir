@@ -25,24 +25,28 @@ Meteor.methods({
     })
   },
 
-  'exports.updateInterval'(progress = null, exportId = null) {
+  'exports.updateInterval'(exportId = null) {
     check(exportId, String);
-    check(progress, Number);
 
-    let newProgress = progress;
+    let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
 
-    let hInterval = Meteor.setInterval(() => {
-      newProgress = newProgress + 5;
+    if (oExport.progress < 100 && !oExport.inProgress) {
+      let newProgress = oExport.progress;
 
-      Meteor.call('exports.update', exportId, newProgress);
+      let hInterval = Meteor.setInterval(() => {
+        newProgress = newProgress + 5;
 
-      if (newProgress >= 100) {
-        let rand = _.sample(URLsCollection.find({}).fetch());
-        let randUrl = URLsCollection.find({ _id: rand && rand._id }).fetch()[0].text;
+        Meteor.call('exports.update', exportId, newProgress);
 
-        Meteor.call('exports.update', exportId, 100, randUrl, false);
-        Meteor.clearInterval(hInterval);
-      }
-    }, 1000);
+        if (newProgress >= 100) {
+          let rand = _.sample(URLsCollection.find({}).fetch());
+          let randUrl = URLsCollection.find({ _id: rand && rand._id }).fetch()[0].text;
+
+          Meteor.call('exports.update', exportId, 100, randUrl, false);
+          Meteor.clearInterval(hInterval);
+        }
+      }, 1000);
+    }
+
   },
 })
