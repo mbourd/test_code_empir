@@ -17,6 +17,7 @@ Meteor.methods({
     check(exportId, String);
     check(urlText, String);
     check(progress, Number);
+    check(inProgress, Boolean);
 
     exportsCollection.update(exportId, {
       $set: {
