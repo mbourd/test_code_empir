@@ -8,6 +8,7 @@ import './Export.js';
 
 Template.mainContainer.onCreated(function mainContainerOnCreated() {
   Meteor.subscribe('allExports');
+  Meteor.subscribe('allUrls');
 });
 
 Template.mainContainer.helpers({
@@ -18,8 +19,6 @@ Template.mainContainer.helpers({
 
 Template.mainContainer.events({
   "click #export-button"(event, instance) {
-    Meteor.subscribe('allUrls');
-    Meteor.subscribe('allExports');
     Meteor.call('exports.insertAndStartExport');
   }
 });
