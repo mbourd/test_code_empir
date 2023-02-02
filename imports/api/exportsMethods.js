@@ -26,6 +26,9 @@ Meteor.methods({
   },
 
   'exports.updateInterval'(progress = null, exportId = null) {
+    check(exportId, String);
+    check(progress, Number);
+
     let newProgress = progress;
 
     let hInterval = Meteor.setInterval(() => {
