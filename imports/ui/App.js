@@ -20,6 +20,6 @@ Template.mainContainer.events({
   "click #export-button"(event, instance) {
     Meteor.subscribe('allUrls');
     Meteor.subscribe('allExports');
-    console.log(Meteor.call('exports.insertAndStartExport', 0, '', new Date()));
+    Meteor.call('exports.insertAndStartExport', 0, '', new Date());
   }
 });

@@ -24,6 +24,12 @@ Meteor.methods({
     check(progress, Number);
     check(inProgress, Boolean);
 
+    let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
+
+    if (!oExport) {
+      throw new Meteor.Error('Export not existing.');
+    }
+
     exportsCollection.update(exportId, {
       $set: {
         progress, result : urlText, inProgress
@@ -35,6 +41,10 @@ Meteor.methods({
     check(exportId, String);
 
     let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
+
+    if (!oExport) {
+      throw new Meteor.Error('Export not existing.');
+    }
 
     if (oExport.progress < 100 && !oExport.inProgress) {
       let newProgress = oExport.progress;
