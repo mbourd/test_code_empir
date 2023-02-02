@@ -25,7 +25,7 @@ Meteor.methods({
     })
   },
 
-  'exports.updateInterval'(exportId = null) {
+  'exports.updateInterval'(exportId) {
     check(exportId, String);
 
     let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
