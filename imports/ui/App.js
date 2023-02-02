@@ -18,6 +18,8 @@ Template.mainContainer.helpers({
 
 Template.mainContainer.events({
   "click #export-button"(event, instance) {
-    Meteor.call('exports.insert', 0, '', new Date());
+    Meteor.subscribe('allUrls');
+    Meteor.subscribe('allExports');
+    console.log(Meteor.call('exports.insertAndStartExport', 0, '', new Date()));
   }
 });

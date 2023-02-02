@@ -8,9 +8,14 @@ Meteor.methods({
     check(urlText, String);
     check(progress, Number);
 
-    exportsCollection.insert({
+    return exportsCollection.insert({
       progress, result: urlText, createdAt, inProgress : false
     });
+  },
+
+  'exports.insertAndStartExport'(progress, urlText, createdAt) {
+    let id = Meteor.call('exports.insert', progress, urlText, createdAt);
+    Meteor.call('exports.updateInterval', id);
   },
 
   'exports.update'(exportId, progress, urlText = "", inProgress = true) {
