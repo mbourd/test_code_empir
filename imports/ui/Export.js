@@ -4,7 +4,7 @@ import { Template } from 'meteor/templating';
 import './Export.html';
 
 Template.export.onCreated(function mainContainerOnCreated() {
-  if (this.data.progress < 100) {
+  if (this.data.progress < 100 && !this.data.inProgress) {
     let subURLs = Meteor.subscribe('allUrls');
     Meteor.call('exports.updateInterval', this.data.progress, this.data._id);
   }

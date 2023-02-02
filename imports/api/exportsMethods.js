@@ -9,18 +9,18 @@ Meteor.methods({
     check(progress, Number);
 
     exportsCollection.insert({
-      progress, result: urlText, createdAt
+      progress, result: urlText, createdAt, inProgress : false
     });
   },
 
-  'exports.update'(exportId, progress, urlText = "") {
+  'exports.update'(exportId, progress, urlText = "", inProgress = true) {
     check(exportId, String);
     check(urlText, String);
     check(progress, Number);
 
     exportsCollection.update(exportId, {
       $set: {
-        progress, result : urlText
+        progress, result : urlText, inProgress
       }
     })
   },
@@ -40,7 +40,7 @@ Meteor.methods({
         let rand = _.sample(URLsCollection.find({}).fetch());
         let randUrl = URLsCollection.find({ _id: rand && rand._id }).fetch()[0].text;
 
-        Meteor.call('exports.update', exportId, 100, randUrl);
+        Meteor.call('exports.update', exportId, 100, randUrl, false);
         Meteor.clearInterval(hInterval);
       }
     }, 1000);
