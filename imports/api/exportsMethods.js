@@ -13,8 +13,8 @@ Meteor.methods({
     });
   },
 
-  'exports.insertAndStartExport'(progress, urlText, createdAt) {
-    let id = Meteor.call('exports.insert', progress, urlText, createdAt);
+  'exports.insertAndStartExport'() {
+    let id = Meteor.call('exports.insert', 0, '', new Date());
     Meteor.call('exports.updateInterval', id);
   },
 
