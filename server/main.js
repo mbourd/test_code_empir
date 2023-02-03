@@ -3,6 +3,7 @@ import { URLsCollection } from '../imports/db/URLsCollection';
 import { exportsCollection } from '../imports/db/exportsCollection';
 import '../imports/api/exportsMethods';
 import '../imports/api/exportsPublications';
+import '../imports/api/urlsMethods';
 import '../imports/api/urlsPublications';
 
 

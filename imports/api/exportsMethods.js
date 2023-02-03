@@ -1,6 +1,5 @@
 import { check } from 'meteor/check';
 import { exportsCollection } from '../db/exportsCollection';
-import { URLsCollection } from '../db/URLsCollection';
 import * as _ from 'underscore';
 
 Meteor.methods({
@@ -55,8 +54,7 @@ Meteor.methods({
         Meteor.call('exports.update', exportId, newProgress);
 
         if (newProgress >= 100) {
-          let rand = _.sample(URLsCollection.find({}).fetch());
-          let randUrl = URLsCollection.findOne({ _id: rand && rand._id }).text;
+          let randUrl = Meteor.call('urls.getRandomURL').text;
 
           Meteor.call('exports.update', exportId, 100, randUrl, false);
           Meteor.clearInterval(hInterval);
