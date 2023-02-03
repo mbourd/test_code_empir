@@ -13,7 +13,7 @@ Template.mainContainer.onCreated(function mainContainerOnCreated() {
 
 Template.mainContainer.helpers({
   exports() {
-    return exportsCollection.find({}).fetch();
+    return exportsCollection.find({});
   }
 });
 
