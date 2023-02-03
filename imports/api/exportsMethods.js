@@ -24,7 +24,7 @@ Meteor.methods({
     check(progress, Number);
     check(inProgress, Boolean);
 
-    let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
+    let oExport = exportsCollection.findOne({ _id: exportId });
 
     if (!oExport) {
       throw new Meteor.Error('Export not existing.');
@@ -40,7 +40,7 @@ Meteor.methods({
   'exports.updateInterval'(exportId) {
     check(exportId, String);
 
-    let oExport = exportsCollection.find({ _id: exportId }).fetch()[0];
+    let oExport = exportsCollection.findOne({ _id: exportId });
 
     if (!oExport) {
       throw new Meteor.Error('Export not existing.');
@@ -56,7 +56,7 @@ Meteor.methods({
 
         if (newProgress >= 100) {
           let rand = _.sample(URLsCollection.find({}).fetch());
-          let randUrl = URLsCollection.find({ _id: rand && rand._id }).fetch()[0].text;
+          let randUrl = URLsCollection.findOne({ _id: rand && rand._id }).text;
 
           Meteor.call('exports.update', exportId, 100, randUrl, false);
           Meteor.clearInterval(hInterval);
