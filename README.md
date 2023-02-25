@@ -10,7 +10,7 @@ En utilisant Meteor.js avec Blaze comme framework front, réalise une liste d'ex
 + Un export est terminé lorsqu'il atteint 100%
 + Il avance de 5% chaque seconde
 + une fois arrivé à 100%, il sélectionne une url au hasard parmi les urls suivantes
-  - https://www.lempire.com/
-  - https://www.lemlist.com/
-  - https://www.lemverse.com/
-  - https://www.lemstash.com/
+  - https://www.exemple1.com/
+  - https://www.exemple2.com/
+  - https://www.exemple3.com/
+  - https://www.exemple4.com/
