@@ -19,10 +19,10 @@ Meteor.startup(() => {
 
   if (URLsCollection.find().count() === 0) {
     [
-      'https://www.lempire.com/',
-      'https://www.lemlist.com/',
-      'https://www.lemverse.com/',
-      'https://www.lemstash.com/'
+      'https://www.exemple1.com/',
+      'https://www.exemple2.com/',
+      'https://www.exemple3.com/',
+      'https://www.exemple4.com/'
     ].forEach(urlText => insertUrl(urlText))
   }
 });
